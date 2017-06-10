@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head><title>VUE入门基础（hw）</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="vue入门基础hw">VUE入门基础（hw）</h1>
+
+<h2 id="介绍">介绍</h2>
+
+<blockquote>
+  <p>vue.js 是用来构建web应用接口的一个库</p>
+</blockquote>
+
+<p>技术上，Vue.js 重点集中在<strong>MVVM</strong>模式的ViewModel层，它连接<strong>视图和数据绑定</strong>模型通过两种方式。实际的DOM操作和输出格式被抽象的方式到指令和过滤器</p>
+
+<p>在哲学领域内,尽量让MVVM数据绑定API尽可能简单。模块化和可组合性也是重要的设计考虑。vue不是一个全面的框架,它被设计成简单的和灵活的。你可以用它快速原型,或混合和匹配与其他库定义前端堆栈。</p>
+
+<p>Vue.js的API是参考了AngularJS、KnockoutJS Ractive.js Rivets.js。尽管有相似之处,我相信Vue.js提供一个有价值能够让你在现在的一些现有框架中舍取其价值</p>
+
+
+
+<h2 id="概念概述">概念概述</h2>
+
+<ul><li><code>ViewModel</code></li>
+</ul>
+
+<p>一个对象,同步模型和视图. 在Vue.js中,ViewModels是实例化的Vue的构造器或者是它的子类</p>
+
+<p><code>var vm = new Vue({ /* options */ })</code> <br>
+这是主要的对象,你会与作为开发人员在使用Vue.js交互。</p>
+
+<ul><li><code>View</code></li>
+</ul>
+
+<blockquote>
+  <p>用户看到的实际HTML / DOM</p>
+</blockquote>
+
+<p><code>vm.$el // The View</code> <br>
+ 当使用Vue.js时候，除了自己自定义的指令你几乎不会触碰到DOM的操作，当数据更新后视图的更新将会自动的触发，视图的更新可以很精确的到每一个testNode节点，他们也批处理和异步执行从而提供更好的性能。</p>
+
+<ul><li><code>Model</code></li>
+</ul>
+
+<blockquote>
+  <p>这是一个略微修改的Javascript对象</p>
+</blockquote>
+
+<p><code>vm.$data // The Model</code> <br>
+ 在Vue.js中，模型只是简单的Javascript对象,数据对象,你能够操控他们的属性和视图模型，观察他们的从而能获取通知后更改。</p>
+
+<p>data对象在适当的时候会产生突变，所以修改它与通过引用修改vm.$data是一样的效果。这也方便了多个ViewModel实例观察同一块数据。</p>
+
+<ul><li><code>Directives</code></li>
+</ul>
+
+<p>私有的HTML属性是告诉Vue.js做一些关于DOM的处理</p>
+
+<p><code>&lt;div v-text="message"&gt;&lt;/div&gt;</code> <br>
+&gt; <br>
+这里的div元素有一个v-text的指令，值是message.意思是告诉Vue.js 保持这个div节点的内容与viewMode中的message属性同步</p>
+
+<p>指令可以封装任意DOM操作。例如v-attr 操作一个属性元素,v-repeat克隆基于数组的一个元素，v-on附加事件监听，我们稍后讨论.</p>
+
+<ul><li><code>Mustache Bindings</code></li>
+</ul>
+
+<p>还可以使用mustache-style绑定,在文本和属性。他们翻译成v-text v-attr指令。例如:</p>
+
+<p><code>&lt;div id="person-{{id}}"&gt;Hello {{name}}!&lt;/div&gt;</code> <br>
+虽然方便,但有几件事需要注意的:</p>
+
+<ol><li rel="1"><p>如果设置一个image的src属性的时候，会发送一个HTTP请求，所以当模板是第一次解析出现404，此时用v-attr比较好</p></li>
+<li rel="2"><p>当解析HTML的时候，Internet Explorer将会删除无效的内部style属性，所以我们想要支持IE绑定内联的CSS 我就总是用v-style</p></li>
+<li rel="3"><p>在v-html内部，非转义的HTML你能用三个大括号{{{像这样}}}处理，但是这样会有潜在的XSS攻击，能打开windows,所以建议是绝对安全的数据全的时候才这样做，或者通过自定义管道过滤器清理不可信的HTML</p>
+
+<ul>
+<li><code>Filters</code></li></ul></li>
+</ol>
+
+<blockquote>
+  <p>在更新视图之前可以用函数来处理这个原始的数据。他们正在用一个“管道”指令或绑定:</p>
+</blockquote>
+
+<p><code>&lt;div&gt;{{message | capitalize}}&lt;/div&gt;</code></p>
+
+<p>现在在div的文本内容要更新之前，这个message的值将会通过capitalize函数处理。详细请看Filters in Depth.</p>
+
+<ul><li><code>Components</code></li>
+</ul>
+
+<blockquote>
+  <p>在Vue.js,一个组件是一个简单的视图模型构造函数，通过Vue.component(ID, constructor)注册。通过一个关联的ID，可以嵌套另外的视图模型的模板的v-component指令。这种简单的机制使声明视图模型的重用和组合方式类似于Web组件,而不需要最新的浏览器或重型polyfills。通过将应用程序分解成更小的组件,其结果是一个高度解耦和可维护的代码库。</p>
+</blockquote>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs django"><span class="hljs-comment line-number">1.</span><span class="xml">//html结构<br><span class="hljs-comment line-number">2.</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"demo"</span>&gt;</span><br><span class="hljs-comment line-number">3.</span>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{title | uppercase}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-comment line-number">4.</span>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-comment line-number">5.</span>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span><br><span class="hljs-comment line-number">6.</span>            <span class="hljs-attr">v-repeat</span>=<span class="hljs-string">"todos"</span><br><span class="hljs-comment line-number">7.</span>            <span class="hljs-attr">v-on</span>=<span class="hljs-string">"click: done = !done"</span><br><span class="hljs-comment line-number">8.</span>            <span class="hljs-attr">class</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{{done ? 'done' : ''}}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span><br><span class="hljs-comment line-number">9.</span>            </span><span class="hljs-template-variable">{{content}}</span><span class="xml"><br><span class="hljs-comment line-number">10.</span>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-comment line-number">11.</span>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-comment line-number">12.</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></code></pre>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lasso"><span class="hljs-comment line-number">1.</span><span class="hljs-comment">//vue配置</span><br><span class="hljs-comment line-number">2.</span><span class="hljs-built_in">var</span> demo = <span class="hljs-literal">new</span> Vue({<br><span class="hljs-comment line-number">3.</span>    el: <span class="hljs-string">'#demo'</span>,<br><span class="hljs-comment line-number">4.</span>    <span class="hljs-built_in">data</span>: {<br><span class="hljs-comment line-number">5.</span>        title: <span class="hljs-string">'todos'</span>,<br><span class="hljs-comment line-number">6.</span>        todos: <span class="hljs-meta">[</span><br><span class="hljs-comment line-number">7.</span>            {<br><span class="hljs-comment line-number">8.</span>                done: <span class="hljs-literal">true</span>,<br><span class="hljs-comment line-number">9.</span>                content: <span class="hljs-string">'Learn JavaScript'</span><br><span class="hljs-comment line-number">10.</span>            },<br><span class="hljs-comment line-number">11.</span>            {<br><span class="hljs-comment line-number">12.</span>                done: <span class="hljs-literal">false</span>,<br><span class="hljs-comment line-number">13.</span>                content: <span class="hljs-string">'Learn vue.js'</span><br><span class="hljs-comment line-number">14.</span>            }<br><span class="hljs-comment line-number">15.</span>        <span class="hljs-meta">]</span><br><span class="hljs-comment line-number">16.</span>    }<br><span class="hljs-comment line-number">17.</span>})<br></code></pre></div></body></html>

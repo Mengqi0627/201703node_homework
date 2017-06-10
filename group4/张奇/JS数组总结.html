@@ -1,0 +1,254 @@
+<!DOCTYPE html><html><head><title>JS数组总结</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="js数组总结">JS数组总结</h1>
+
+<h2 id="js数组定义">JS数组定义</h2>
+
+<blockquote>
+  <p>数组对象是使用单独的变量名来存储一系列的值;就是用<code>[ ]</code>包起来的都是数组</p>
+</blockquote>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span>var ary = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];<span class="hljs-comment">//这就是一个数组</span><br></code></pre>
+
+
+
+<h5 id="那么数组有什么意义呢">那么数组有什么意义呢?</h5>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs dart"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> <span class="hljs-built_in">num</span> = <span class="hljs-number">1</span>;<br><span class="hljs-comment line-number">2.</span><span class="hljs-keyword">var</span> num2 = <span class="hljs-number">2</span>;<br><span class="hljs-comment line-number">3.</span><span class="hljs-keyword">var</span> num3 = <span class="hljs-number">3</span>;<br><span class="hljs-comment line-number">4.</span>...<br><span class="hljs-comment line-number">5.</span><br><span class="hljs-comment line-number">6.</span>如果我想找出某一个数字或者几个数字很好找,那么要是找出成百上千个数字呢.<br></code></pre>
+
+<p>上述最好的方法就是用数组;数组可以用一个变量名存储所有的值,并且可以用变量名访问任何一个值. <br>
+数组中的每一个元素都有自己的ID(索引值)一遍它可以很容易被访问到</p>
+
+
+
+<h2 id="索引值">索引值</h2>
+
+<p>上述说到数组的索引;那么就来说一说索引值</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs dart"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> <span class="hljs-built_in">num</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br><span class="hljs-comment line-number">2.</span><span class="hljs-comment">//数组也是对象数据类型,对象数据类型都是由属性名:属性值组成;我们的数组也不例外</span><br><span class="hljs-comment line-number">3.</span> [<span class="hljs-number">0</span>:<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-number">2</span>,<span class="hljs-number">2</span>:<span class="hljs-number">3</span>,<span class="hljs-number">3</span>:<span class="hljs-number">2</span>,<span class="hljs-number">4</span>:<span class="hljs-number">1</span>]<br><span class="hljs-comment line-number">4.</span> 上述冒号前面的就是数组中的属性值也叫做索引<br></code></pre>
+
+<p>索引都是从<code>0</code>开始的</p>
+
+
+
+<h2 id="数组属性">数组属性</h2>
+
+<table>
+<thead>
+<tr>
+  <th align="center">属性</th>
+  <th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="center">constructor</td>
+  <td align="center">返回创建数组对象的原型函数</td>
+</tr>
+<tr>
+  <td align="center">length</td>
+  <td align="center">每个数组自带的长度属性,代表数组的个数</td>
+</tr>
+<tr>
+  <td align="center">prototype</td>
+  <td align="center">原型;利用这个属性可以向数组对象添加属性或方法</td>
+</tr>
+</tbody></table>
+
+
+<blockquote>
+  <p>ary[ary.length-1];找到末尾项 <br>
+  ary[ary.length] = 5;向数组末尾增加一项(5) <br>
+  ary[ary.length–];删除末尾最后一项</p>
+</blockquote>
+
+
+
+<h2 id="array对象属性数组原型上面的属性">Array对象属性(数组原型上面的属性)</h2>
+
+<blockquote>
+  <p>数组的方法分别可以分为增删改查</p>
+</blockquote>
+
+<ol><li rel="1"><code>[].pop</code>:删除数组末尾最后一个元素; <br>
+
+
+<blockquote>
+  <p>返回值:删除的元素 <br>
+  <code> <br>
+  var ary = [1,2,3,4,5,6]; <br>
+  ary.pop(); //返回值:[6] <br>
+  console.log(ary);//输出[1,2,3,4,5] <br>
+  </code></p></blockquote></li>
+  <li rel="2"><code>[].push</code>:向数组的末尾添加一个或多个元素 <br>
+  返回值:新数组的长度(length值) <br>
+  <code> <br>
+  var ary = [1,2,3,4,5,6]; <br>
+  ary.push(9);//返回值:7(新数组长度) <br>
+  console.log(ary);//输出[1,2,3,4,5,6,9] <br>
+  </code></li>
+  <li rel="3"><code>[].shift</code>:删除数组的第一个元素; <br>
+  返回值:被删除的第一个元素 <br>
+  <code> <br>
+  var ary = [1,2,3,4,5,6]; <br>
+      ary.shift(); //返回值:[1] <br>
+      console.log(ary);//输出[2,3,4,5,6] <br>
+  </code></li>
+  <li rel="4"><code>[].unshift</code>:向数组开头增加一个或多个元素 <br>
+  返回值:新数组的长度 <br>
+  <code> <br>
+  var ary = [1,2,3,4,5,6]; <br>
+      ary.unshift(7); //返回值:[7] <br>
+      console.log(ary);//输出[7,1,2,3,4,5,6] <br>
+  </code></li>
+  <li rel="5"><p><code>[].splice</code>:向数组中插入,删除或者替换元素(增删改)</p>
+
+
+<p><strong>修改:</strong></p>
+
+<blockquote>
+  <p>返回值:被删除的内容</p>
+</blockquote></li>
+</ol>
+
+<p>语法:ary.splice(x,y,z)</p>
+
+<blockquote>
+  <p>从索引x开始删除y个元素,用z替换(z可以是多个值) <br>
+    <code> <br>
+    var ary = [11,22,33] <br>
+    ary.splice(0,2,3);//返回值:[11,22] <br>
+    console.log(ary);//输出[3,33] <br>
+  </code> <br>
+    <strong>增加:</strong> <br>
+  返回值:空数组</p>
+  
+  <p>语法:ary.splice(x,0,z);</p>
+  
+  <p>从索引x开始一个都不删除(0)把z增加到索引x前面,返回一个空数组;原数组不变</p>
+</blockquote>
+
+<p>&gt; <br>
+  <code> <br>
+  var ary = [11,22,33] <br>
+  ary.splice(1,0,3);//返回值:[] <br>
+  console.log(ary);//输出[11,3,22,33] <br>
+</code></p>
+
+<p><strong>删除:</strong></p>
+
+<blockquote>
+  <p>返回值:删除的内容以一个新数组返回</p>
+  
+  <p>语法:ary.splice(x,y);</p>
+  
+  <p>从索引x开始删除y个元素,包含y ;</p>
+</blockquote>
+
+<p><code> <br>
+ var ary = [11,22,33,23,55]; <br>
+ ary.splice(1,2);//返回值:[22,33] <br>
+ console.log(ary);//输出:[11,23,55] <br>
+</code></p>
+
+<p><code> <br>
+ ary.splice(x); <br>
+ //从索引x开始,删除到末尾,把删除的内容以一个新数组返回 <br>
+</code></p>
+
+<p><code> <br>
+ ary.splice(0); <br>
+ //清空数组 <br>
+ //返回原来的数组 <br>
+</code></p>
+
+<p><code> <br>
+ ary.splice(); <br>
+ //如果不传参数的话,返回一个空数组,原有数组不发生改变 <br>
+</code></p>
+
+<ol start="6"><li rel="6"><p><code>[].slice</code>:实现数组的截取</p>
+
+<blockquote>
+  <p>返回值:返回查找到的元素以新数组返回,<strong>原有数组不发生改变</strong></p>
+  
+  <p>语法:ary.slice(x,y);</p>
+  
+  <p>从索引x项找到y项之前(不包含y项),把查找的内容以一个新数组返回;<strong>m必须大于n</strong></p>
+</blockquote>
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span>var ary = [<span class="hljs-number">11</span>,<span class="hljs-number">22</span>,<span class="hljs-number">33</span>,<span class="hljs-number">23</span>,<span class="hljs-number">55</span>];<br><span class="hljs-comment line-number">2.</span>ary.slice(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>);<span class="hljs-comment">//返回值:[22,33]</span><br><span class="hljs-comment line-number">3.</span>console.log(ary);<span class="hljs-comment">//输出:[11,22,33,23,55]</span><br></code></pre>
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs gcode"><span class="hljs-comment line-number">1.</span>ary.slice<span class="hljs-comment">(x)</span>;<br><span class="hljs-comment line-number">2.</span><span class="hljs-comment">//从索引x开始,一直找到数组的末尾,将找到的部分以一个新数组返回,原有数组不变</span><br></code></pre>
+
+<p></p><ol>
+<li rel="7"><code>[].concat</code>:合并数组 <br></li></ol><p></p>
+
+<blockquote>
+  <p>返回值:合并的新数组</p></blockquote></li></ol>
+
+
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span>var ary = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>];<br><span class="hljs-comment line-number">2.</span>var ary1 = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br><span class="hljs-comment line-number">3.</span>ary.concat(ary1);<br><span class="hljs-comment line-number">4.</span><span class="hljs-comment">//输出:[1,2,2,1]</span><br></code></pre>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span>var ary = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>];<br><span class="hljs-comment line-number">2.</span>var ary1 = [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>];<br><span class="hljs-comment line-number">3.</span>ary.concat([<span class="hljs-number">2</span>,<span class="hljs-number">1</span>],ary1);<br><span class="hljs-comment line-number">4.</span><span class="hljs-comment">//输出:[1,2,2,1,3,2]</span><br></code></pre>
+
+<p><code>ary.concat()</code>:克隆一份ary</p>
+
+<ol start="8"><li rel="8"><code>[].join('')</code>:按照每一个分隔符,把数组中的每一项拼接成一个字符串;原有数组不变</li>
+</ol>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span>var ary = [<span class="hljs-number">11</span>,<span class="hljs-number">22</span>,<span class="hljs-number">33</span>];<br><span class="hljs-comment line-number">2.</span>ary.join(<span class="hljs-string">"@"</span>);<br><span class="hljs-comment line-number">3.</span><span class="hljs-comment">//输出:"11@22@33"</span><br></code></pre>
+
+<p><strong>不添加参数默认是,</strong></p>
+
+<p><strong><code>eval</code></strong></p>
+
+<blockquote>
+  <p>JS中把字符串变成JS表达式执行的一种方法</p>
+</blockquote>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span>把数组中每一项进行相加求和<br><span class="hljs-comment line-number">2.</span>var ary = [<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>,<span class="hljs-number">50</span>];<br><span class="hljs-comment line-number">3.</span>ary.join(<span class="hljs-string">"+"</span>);<br><span class="hljs-comment line-number">4.</span><span class="hljs-comment">//"10+20+30+40+50"</span><br><span class="hljs-comment line-number">5.</span>console.log(eval(ary.join(<span class="hljs-string">"+"</span>)));<br><span class="hljs-comment line-number">6.</span><span class="hljs-comment">//输出:10+20+30+40+50 = 150;</span><br></code></pre>
+
+<ol start="9"><li rel="9"><p><code>[].reverse</code>:颠倒数组;</p>
+
+<blockquote>
+  <p>把数组倒过来排列</p>
+</blockquote></li>
+<li rel="10"><p><code>[].sort</code>:数组排序</p>
+
+<blockquote>
+  <p>数组排序,原有数组发生改变</p>
+</blockquote></li>
+</ol>
+
+<blockquote>
+  <p>ary.sort();只能处理10以内的数字进行排序</p>
+</blockquote>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs actionscript"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">var</span> ary = [<span class="hljs-number">23</span>,<span class="hljs-number">14</span>,<span class="hljs-number">32</span>,<span class="hljs-number">67</span>,<span class="hljs-number">112</span>];<br><span class="hljs-comment line-number">2.</span><br><span class="hljs-comment line-number">3.</span>   ary.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a,b)</span> </span>{<br><span class="hljs-comment line-number">4.</span>     <span class="hljs-keyword">return</span> a - b;<br><span class="hljs-comment line-number">5.</span>    });<br><span class="hljs-comment line-number">6.</span>   <span class="hljs-comment">//从小到大依次排序</span><br><span class="hljs-comment line-number">7.</span><br><span class="hljs-comment line-number">8.</span>  ary.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a,b)</span> </span>{<br><span class="hljs-comment line-number">9.</span>      <span class="hljs-keyword">return</span> b - a;<br><span class="hljs-comment line-number">10.</span>    });<br><span class="hljs-comment line-number">11.</span>    <span class="hljs-comment">//从大到小依次排序</span><br><span class="hljs-comment line-number">12.</span><br></code></pre>
+
+<ol start="11"><li rel="11">indexOf / lastIndexof</li>
+</ol></div></body></html>
